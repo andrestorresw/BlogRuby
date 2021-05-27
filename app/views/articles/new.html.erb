@@ -1,9 +1,11 @@
+<%#  esta sintaxis es un Action View Form Helpers de Rails que nos permiten construir HTMl %>
+
 <%= form_with(model: @article, local: true) do |form| %>
     
-    <br></br>
+    <br><br>
 
     <div>
-        <%= form.label :title %>
+        <%= form.label :title  %> <%# :title se toma desde la variable @article que guarda al objeto de la clase Article declarada en el modelo article.rb que a su vez esta conectado a la tabla articles de donde finalmente viene la columna title%>
         <%= form.text_field :title %>
     </div>
 
