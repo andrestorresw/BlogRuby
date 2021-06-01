@@ -1,0 +1,19 @@
+<%= form_with(model: @article, local: true) do |form|  %>
+<%# form_with es un metodo para construir un formulario ademas recibe un bloque de ruby (do end) %>
+<%# lo que le mandemos en model es lo que va a llenar en los campos declarados mas abajo %>    
+    <br><br>
+    <div>
+        <%= form.label :title  %>
+        <%= form.text_field :title  %>
+        <%# desde text_field se toma la variable title y la manda al objeto articulo %>
+    </div>
+    <br><br>
+    <div>
+        <%= form.label :content %>
+        <%= form.rich_text_area :content %>
+        <%# Este es control de ActionText %>
+    </div>
+    <div>
+        <%= form.submit %>
+    </div>
+<%end %>
