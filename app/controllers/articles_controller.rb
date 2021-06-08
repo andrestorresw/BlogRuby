@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
     before_action :find_article, except: [:new, :create, :index]
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     #Cada que se ejecute una accion, antes se va a ejecutar find_article
 
     def index

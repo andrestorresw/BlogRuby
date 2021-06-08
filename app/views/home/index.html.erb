@@ -1,6 +1,5 @@
 
 <%# Controlada por la accion(metodo) index, en el controlador home %>
-<br> </br>
-<h1>Hola mundo :)</h1>
+<h1>Hola <%= current_user.email %> </h1>
 
 <%= link_to "Inicio", root_path %>
