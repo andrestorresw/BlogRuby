@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-    before_action :find_article, except: [:new, :create, :index]
+    before_action :find_article, except: [:new, :create, :index, :from_author]
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     #Cada que se ejecute una accion, antes se va a ejecutar find_article
 
@@ -25,15 +25,20 @@ class ArticlesController < ApplicationController
     end
 
     def create #Guardar lo que hallamos recibido del formulario del metodo new
-        @article = Article.create(title: params[:article][:title], content: params[:article][:content])
+        @article = current_user.articles.create(title: params[:article][:title], content: params[:article][:content])
         # Estamos creando un hash (JSON) para que lo guarde en el modelo(db)
         # Recibimos lo que va a venir de new con params y creamos el articulo en la db
-        render json: @article
+        
+        redirect_to @article
     end
 
     def destroy
         @article.destroy
         redirect_to root_path
+    end
+
+    def from_author
+        @user = User.find(params[:user_id])
     end
 
     def find_article
